@@ -1,104 +1,59 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyLayout());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyLayout extends StatelessWidget {
+  const MyLayout({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Card Properties Example',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const CardExampleScreen(),
+    return const MaterialApp(
+      title: 'Layout Learning',
+      home: MyLayoutScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class CardExampleScreen extends StatefulWidget {
-  const CardExampleScreen({super.key});
-  @override
-  CardCreation createState() => CardCreation();
-}
-
-class CardCreation extends State<CardExampleScreen> {
-  int counter = 0;
-  final showText = [
-    'A god is my favourite',
-    'Batch file is not found',
-    'Cat walk on the road',
-    'Dog must be a value',
-  ];
-//  void increment() {
-//     setState(() {
-//       counter++;
-//     });
-//   }
-
-//  static void decrement() {
-//     setState(() {
-//       counter--;
-//     });
-//   }
-
+class MyLayoutScreen extends StatelessWidget {
+  const MyLayoutScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Card Properties Example'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Card(
-          color: Colors.white,
-          elevation: 8,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          margin: const EdgeInsets.all(16),
-          clipBehavior: Clip.antiAlias,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                const Text(
-                  'Youre Fortune',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  showText[counter % showText.length],
-                  style: const TextStyle(fontSize: 16),
-                ),
-                const SizedBox(height: 16),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        counter++;
-                      });
-                    },
-                    child: const Icon(Icons.add),
-                  ),
-                  const SizedBox(width: 15),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        counter--;
-                      });
-                    },
-                    child: const Icon(Icons.remove),
-                  ),
-                ])
-              ],
-            ),
-          ),
+        appBar: AppBar(
+          title: const Text("Layout screen"),
         ),
-      ),
-    );
+        body: Center(
+            child: Container(
+                padding: const EdgeInsets.all(16.0),
+                child: ListView(
+                  scrollDirection: Axis.vertical,
+                  clipBehavior: Clip.hardEdge,
+                  children: [
+                    const SizedBox(height: 10),
+                    Container(
+                        height: 200,
+                        child: Image.network(
+                            'https://cdn.pixabay.com/photo/2014/09/24/14/29/macbook-459196_1280.jpg',
+                            width: 100,
+                            height: 200,
+                            fit: BoxFit.fill)),
+                    const SizedBox(height: 10),
+                    Container(
+                        height: 200,
+                        width: 500,
+                        child: Image.asset('images/lake.jpg',
+                            width: 200, height: 200, fit: BoxFit.fill)),
+                    const SizedBox(height: 10),
+                    Container(
+                        height: 200,
+                        child: Image.network(
+                            'https://cdn.pixabay.com/photo/2014/09/24/14/29/macbook-459196_1280.jpg',
+                            width: 100,
+                            height: 200,
+                            fit: BoxFit.fill)),
+                  ],
+                ))));
   }
 }
